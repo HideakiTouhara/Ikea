@@ -70,6 +70,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="ue1-cH-m3w" id="9EX-n8-Pap"/>
+                        <outlet property="sceneView" destination="0jH-t7-fM0" id="tha-54-gPg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
