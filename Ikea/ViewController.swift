@@ -9,12 +9,13 @@
 import UIKit
 import ARKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UICollectionViewDataSource {
     
     @IBOutlet weak var sceneView: ARSCNView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     let configuration = ARWorldTrackingConfiguration()
+    let itemsArray: [String] = ["cup", "vase", "boxing", "table"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,15 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return itemsArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Item", for: indexPath)
+        return cell
     }
 
 
