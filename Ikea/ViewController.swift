@@ -9,7 +9,7 @@
 import UIKit
 import ARKit
 
-class ViewController: UIViewController, UICollectionViewDataSource {
+class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var sceneView: ARSCNView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -21,6 +21,8 @@ class ViewController: UIViewController, UICollectionViewDataSource {
         super.viewDidLoad()
         self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
         self.sceneView.session.run(configuration)
+        collectionView.dataSource = self
+        collectionView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,6 +38,16 @@ class ViewController: UIViewController, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Item", for: indexPath) as! ItemCell
         cell.itemLebel.text = self.itemsArray[indexPath.row]
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.backgroundColor = UIColor.green
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.backgroundColor = UIColor.orange
     }
 
 
