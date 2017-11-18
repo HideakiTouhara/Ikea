@@ -20,6 +20,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
+        self.configuration.planeDetection = .horizontal
         self.sceneView.session.run(configuration)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -28,6 +29,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func registerGestureRecognizers() {
+        let tapGestureRecognizer = UIGestureRecognizer(target: self, action: #selector(tapped))
+        sceneView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func tapped() {
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
